@@ -4,11 +4,11 @@ import java.util.List;
 
 
 public class MatchMaker {
-	private List<String> names;
+	private List<int[]> pairs;
 	private int compatibilityPercent;
 
-	public MatchMaker(List<String> names) {
-		this.names = names;
+	public MatchMaker(List<int[]> pairs) {
+		this.pairs = pairs;
 		compatibilityPercent = 0;
 	}
 	
@@ -19,7 +19,7 @@ public class MatchMaker {
 
 	private int findMatches() {
 		int matches = 0;
-		for (int i=0; i<names.size()-1; i++) {
+		for (int i=0; i<pairs.size()-1; i++) {
 			matches += matchesFor(i);
 		}		
 		return matches;
@@ -27,16 +27,16 @@ public class MatchMaker {
 
 	private int matchesFor(int i) {
 		int matches = 0;
-		for (int j=i+1; j<names.size(); j++) {
-			if (matchFound(names.get(i), names.get(j))) {
+		for (int j=i+1; j<pairs.size(); j++) {
+			if (matchFound(pairs.get(i), pairs.get(j))) {
 				matches++;
 			}
 		}
 		return matches;
 	}
 	
-	private boolean matchFound(String name1, String name2) {
-		int[] pairs = Pairs.getPairs(name1, name2);
+	private boolean matchFound(int[] name1, int[] name2) {
+		int[] pairs = Pairs.combine(name1, name2);
 		int compatibility = compare(pairs);
 		
 		return compatibility >= compatibilityPercent;

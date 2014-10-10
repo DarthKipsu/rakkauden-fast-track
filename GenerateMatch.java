@@ -5,9 +5,9 @@ import java.util.List;
 public class GenerateMatch {
 
 	public static void main(String[] args) throws Exception {
-		List<String> names = new ListCreator().nameList(args[0]);
+		List<int[]> pairs = new ListCreator().nameList(args[0]);
 		
-		MatchMaker matchMaker = new MatchMaker(names);
+		MatchMaker matchMaker = new MatchMaker(pairs);
         if (args.length == 1) {
 	        System.out.println(matchMaker.matchesWithCompatibility(99));
         } else {

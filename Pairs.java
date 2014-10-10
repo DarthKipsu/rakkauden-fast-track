@@ -2,16 +2,17 @@
 
 public class Pairs {
 	
-	public static int[] getPairs(String name1, String name2) {
+	public static int[] combine(int[] name1, int[] name2) {
 		int[] pairs = new int[5];
 		
-		calculatePairs(name1, pairs);
-		calculatePairs(name2, pairs);
+        for (int i=0; i<pairs.length; i++) {
+            pairs[i] = name1[i] + name2[i];
+        }
 		
 		return pairs;
 	}
 	
-	private static void calculatePairs(String name, int[] pairs) {
+	public static int[] calculatePairs(String name, int[] pairs) {
 		for (int i=0; i<name.length(); i++) {
 			switch (name.charAt(i)) {
 				case 'p': pairs[0]++; break;
@@ -21,5 +22,6 @@ public class Pairs {
 				case 's': pairs[4]++; break;
 			}
 		}
+        return pairs;
 	}
 }

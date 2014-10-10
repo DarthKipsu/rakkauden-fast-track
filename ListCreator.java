@@ -7,9 +7,9 @@ import java.util.Scanner;
 
 public class ListCreator {
 	private Scanner reader;
-	private List<String> list;
+	private List<int[]> list;
 	
-	public List<String> nameList(String filename) throws Exception {
+	public List<int[]> nameList(String filename) throws Exception {
 		reader = new Scanner(new FileReader(filename));
 		list = new ArrayList<>();
 		readFileToList();
@@ -18,7 +18,8 @@ public class ListCreator {
 
 	private void readFileToList() {
 		while (reader.hasNextLine()) {
-			list.add(reader.nextLine().toLowerCase().trim());
+            String name = reader.nextLine().toLowerCase().trim();
+			list.add(Pairs.calculatePairs(name, new int[5]));
 		}
 	}
 	
